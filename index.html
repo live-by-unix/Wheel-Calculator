@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Wheel Speed Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+    }
+    .card {
+        background: white;
+        padding: 30px;
+        width: 420px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+        margin-top: 0;
+        font-size: 26px;
+        text-align: center;
+    }
+    input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+    button {
+        width: 100%;
+        padding: 14px;
+        background: black;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 17px;
+        cursor: pointer;
+    }
+    button:hover {
+        opacity: 0.85;
+    }
+    .result {
+        margin-top: 25px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+<div class="card">
+    <h1>Wheel Speed Calculator</h1>
+
+    <label>Distance per wheel rotation</label>
+    <input id="distance" type="number" step="any" placeholder="e.g., 1 (mile)">
+
+    <label>Rotations per second</label>
+    <input id="rps" type="number" step="any" placeholder="e.g., 28">
+
+    <button onclick="calc()">Calculate Speed</button>
+
+    <div class="result" id="output"></div>
+</div>
+
+<script>
+function calc() {
+    const d = parseFloat(document.getElementById("distance").value);
+    const r = parseFloat(document.getElementById("rps").value);
+
+    if (isNaN(d) || isNaN(r)) {
+        document.getElementById("output").innerHTML = "Enter valid numbers.";
+        return;
+    }
+
+    const perSecond = d * r;
+    const perHour = perSecond * 3600;
+
+    document.getElementById("output").innerHTML =
+        "Speed per second: " + perSecond + "<br>" +
+        "Speed per hour: " + perHour;
+}
+</script>
+
+</body>
+</html>
